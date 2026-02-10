@@ -53,23 +53,23 @@ const transactions = [
 
 export const RecentTransactions = () => {
   return (
-    <div className='rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden'>
-      <div className='flex items-center justify-between border-b border-slate-100 p-6'>
+    <div className='rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden dark:bg-slate-900 dark:border-slate-800'>
+      <div className='flex items-center justify-between border-b border-slate-100 p-6 dark:border-slate-800'>
         <div>
-          <h3 className='text-base font-semibold text-slate-900'>
+          <h3 className='text-base font-semibold text-slate-900 dark:text-white'>
             Recent Transactions
           </h3>
-          <p className='text-sm text-slate-500'>
+          <p className='text-sm text-slate-500 dark:text-slate-400'>
             Latest financial activity from your users.
           </p>
         </div>
-        <button className='text-sm font-medium text-blue-600 hover:text-blue-700'>
+        <button className='text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300'>
           View All
         </button>
       </div>
       <div className='overflow-x-auto'>
         <table className='w-full text-left text-sm'>
-          <thead className='bg-slate-50 text-slate-500'>
+          <thead className='bg-slate-50 text-slate-500 dark:bg-slate-800/50 dark:text-slate-400'>
             <tr>
               <th className='px-6 py-3 font-medium'>Customer</th>
               <th className='px-6 py-3 font-medium'>Status</th>
@@ -79,21 +79,21 @@ export const RecentTransactions = () => {
               <th className='px-6 py-3 font-medium'></th>
             </tr>
           </thead>
-          <tbody className='divide-y divide-slate-100'>
+          <tbody className='divide-y divide-slate-100 dark:divide-slate-800'>
             {transactions.map((trx) => (
               <tr
                 key={trx.id}
-                className='group hover:bg-slate-50 transition-colors'>
+                className='group hover:bg-slate-50 transition-colors dark:hover:bg-slate-800/50'>
                 <td className='px-6 py-4'>
                   <div className='flex items-center'>
-                    <div className='h-9 w-9 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold mr-3'>
+                    <div className='h-9 w-9 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold mr-3 dark:bg-blue-900/30 dark:text-blue-400'>
                       {trx.user.initials}
                     </div>
                     <div>
-                      <div className='font-medium text-slate-900'>
+                      <div className='font-medium text-slate-900 dark:text-slate-200'>
                         {trx.user.name}
                       </div>
-                      <div className='text-xs text-slate-500'>
+                      <div className='text-xs text-slate-500 dark:text-slate-500'>
                         {trx.user.email}
                       </div>
                     </div>
@@ -103,10 +103,10 @@ export const RecentTransactions = () => {
                   <div
                     className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${
                       trx.status === 'Success'
-                        ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
+                        ? 'bg-emerald-50 text-emerald-700 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-900/30'
                         : trx.status === 'Pending'
-                          ? 'bg-amber-50 text-amber-700 border-amber-100'
-                          : 'bg-red-50 text-red-700 border-red-100'
+                          ? 'bg-amber-50 text-amber-700 border-amber-100 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-900/30'
+                          : 'bg-red-50 text-red-700 border-red-100 dark:bg-red-900/20 dark:text-red-400 dark:border-red-900/30'
                     }`}>
                     {trx.status === 'Success' && (
                       <CheckCircle2 className='mr-1 h-3 w-3' />
@@ -120,13 +120,17 @@ export const RecentTransactions = () => {
                     {trx.status}
                   </div>
                 </td>
-                <td className='px-6 py-4 text-slate-500'>{trx.date}</td>
-                <td className='px-6 py-4 text-slate-500'>{trx.method}</td>
-                <td className='px-6 py-4 text-right font-medium text-slate-900'>
+                <td className='px-6 py-4 text-slate-500 dark:text-slate-400'>
+                  {trx.date}
+                </td>
+                <td className='px-6 py-4 text-slate-500 dark:text-slate-400'>
+                  {trx.method}
+                </td>
+                <td className='px-6 py-4 text-right font-medium text-slate-900 dark:text-slate-200'>
                   {trx.amount}
                 </td>
                 <td className='px-6 py-4 text-right'>
-                  <button className='text-slate-400 hover:text-slate-600 p-1 rounded hover:bg-slate-200'>
+                  <button className='text-slate-400 hover:text-slate-600 p-1 rounded hover:bg-slate-200 dark:hover:bg-slate-800 dark:hover:text-slate-200'>
                     <MoreHorizontal className='h-4 w-4' />
                   </button>
                 </td>
