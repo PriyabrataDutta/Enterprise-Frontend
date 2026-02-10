@@ -1,8 +1,3 @@
-Here is the fully updated `README.md` file. It now documents the **Dark Mode**, **Error Handling**, and **Dashboard** features we just added.
-
-You can copy and paste this directly into your project.
-
-```markdown
 # 🚀 Enterprise Scalable Frontend (React + Vite)
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -56,20 +51,14 @@ src/
 ├── stores/               # Global State (Auth, Theme)
 └── utils/                # Error handling & helpers
 
-```
+🚀 Getting Started
+1. Prerequisites
+Node.js v18+
 
----
+npm or yarn
 
-## 🚀 Getting Started
-
-### 1. Prerequisites
-
-* Node.js v18+
-* npm or yarn
-
-### 2. Installation
-
-```bash
+2. Installation
+Bash
 # Clone the repository
 git clone [https://github.com/your-username/enterprise-frontend.git](https://github.com/your-username/enterprise-frontend.git)
 
@@ -78,72 +67,45 @@ cd enterprise-frontend
 
 # Install dependencies
 npm install
+3. Environment Setup
+Create a .env file in the root directory:
 
-```
-
-### 3. Environment Setup
-
-Create a `.env` file in the root directory:
-
-```properties
+Properties
 VITE_API_URL=http://localhost:8000/api/v1
-
-```
-
-### 4. Run Development Server
-
-```bash
+4. Run Development Server
+Bash
 npm run dev
+Visit http://localhost:3000 to view the app.
 
-```
+📂 Critical File BreakdownFilePurposesrc/lib/axios.tsThe Interceptor Engine. Handles Silent Refresh (auto-renews tokens on 401 errors).src/stores/useAuthStore.tsSession Manager. Handles user state in memory.src/stores/useThemeStore.tsTheme Manager. Persists Dark/Light mode preference.src/routes/index.tsxThe Router. Manages lazy loading and protected routes.src/components/auth/Authorization.tsxThe Gatekeeper. Hides UI elements if the user lacks permission.
+🛠 Tech Stack
+Framework: React + Vite
 
-Visit `http://localhost:3000` to view the app.
+Language: TypeScript (Strict Mode)
 
----
+Styling: Tailwind CSS + clsx + tailwind-merge
 
-## 📂 Critical File Breakdown
+State Management: Zustand (Global) + TanStack Query (Server)
 
-| File | Purpose |
-| --- | --- |
-| `src/lib/axios.ts` | **The Interceptor Engine.** Handles Silent Refresh (auto-renews tokens on 401 errors). |
-| `src/stores/useAuthStore.ts` | **Session Manager.** Handles user state in memory. |
-| `src/stores/useThemeStore.ts` | **Theme Manager.** Persists Dark/Light mode preference. |
-| `src/routes/index.tsx` | **The Router.** Manages lazy loading and protected routes. |
-| `src/components/auth/Authorization.tsx` | **The Gatekeeper.** Hides UI elements if the user lacks permission. |
+Forms: React Hook Form + Zod
 
----
+UI Components: Lucide React (Icons) + Sonner (Toasts)
 
-## 🛠 Tech Stack
+🤝 Contributing
+Fork the Project
 
-* **Framework:** React + Vite
-* **Language:** TypeScript (Strict Mode)
-* **Styling:** Tailwind CSS + `clsx` + `tailwind-merge`
-* **State Management:** Zustand (Global) + TanStack Query (Server)
-* **Forms:** React Hook Form + Zod
-* **UI Components:** Lucide React (Icons) + Sonner (Toasts)
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
 
----
+Commit your Changes (git commit -m 'Add some AmazingFeature')
 
-## 🤝 Contributing
+Push to the Branch (git push origin feature/AmazingFeature)
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Open a Pull Request
 
----
+📄 License
+Distributed under the MIT License. See LICENSE for more information.
 
-## 📄 License
+<p align="center"> Built with ❤️ for scalability. </p>
 
-Distributed under the MIT License. See `LICENSE` for more information.
 
----
 
-<p align="center">
-Built with ❤️ for scalability.
-</p>
-
-```
-
-```
