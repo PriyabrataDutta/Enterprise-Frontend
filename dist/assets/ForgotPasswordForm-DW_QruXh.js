@@ -1,0 +1,6 @@
+import{c,j as e,B as u,L as d,t as x}from"./index-fYanr8PV.js";import{u as h,A as p,I as y,t as b,h as j,o as f,s as g}from"./Input-D9p_3IOC.js";/**
+ * @license lucide-react v0.330.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const w=c("ArrowLeft",[["path",{d:"m12 19-7-7 7-7",key:"1l729n"}],["path",{d:"M19 12H5",key:"x3x0zl"}]]),L=f({email:g().email("Invalid email")}),N=()=>{var s;const{register:a,handleSubmit:r,setError:o,formState:{errors:i,isSubmitting:l}}=h({resolver:b(L)}),n=async m=>{try{await new Promise(t=>setTimeout(t,1e3)),x.success(`Reset link sent to ${m.email}`)}catch(t){j(t,o)}};return e.jsx(p,{title:"Reset Password",subtitle:"We'll send you a link to reset it.",children:e.jsxs("form",{onSubmit:r(n),className:"space-y-6",children:[e.jsx(y,{label:"Email",type:"email",...a("email"),error:(s=i.email)==null?void 0:s.message}),e.jsx(u,{type:"submit",isLoading:l,className:"w-full h-11 text-base",children:"Send Reset Link"}),e.jsx("div",{className:"text-center",children:e.jsxs(d,{to:"/auth/login",className:"inline-flex items-center text-sm font-medium text-slate-600 hover:text-blue-600",children:[e.jsx(w,{className:"mr-2 h-4 w-4"})," Back to login"]})})]})})};export{N as ForgotPasswordForm};

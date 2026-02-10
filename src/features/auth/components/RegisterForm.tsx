@@ -28,7 +28,7 @@ export const RegisterForm = () => {
     resolver: zodResolver(schema),
   });
 
-  // FIX: Removed 'data' argument since it wasn't used
+  // FIX: Removed unused 'data' parameter
   const onSubmit = async () => {
     try {
       await new Promise((r) => setTimeout(r, 1000));

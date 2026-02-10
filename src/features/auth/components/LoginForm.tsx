@@ -31,7 +31,6 @@ export const LoginForm = () => {
 
   const onSubmit = async (data: LoginSchema) => {
     try {
-      // MOCK API - Replace with actual API call
       await new Promise((r) => setTimeout(r, 1000));
       const mockRes = {
         accessToken: 'jwt',
@@ -77,7 +76,7 @@ export const LoginForm = () => {
               Forgot password?
             </Link>
           </div>
-          {/* FIX: Added label prop (empty string if you handle label manually above) */}
+          {/* FIX: Added label prop */}
           <Input
             label=''
             type='password'
