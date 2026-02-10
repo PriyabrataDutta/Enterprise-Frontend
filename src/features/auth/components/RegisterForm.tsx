@@ -15,6 +15,8 @@ const schema = z.object({
   password: z.string().min(8, 'Min 8 characters'),
 });
 
+type RegisterSchema = z.infer<typeof schema>;
+
 export const RegisterForm = () => {
   const navigate = useNavigate();
   const {
@@ -22,11 +24,12 @@ export const RegisterForm = () => {
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<RegisterSchema>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (data: any) => {
+  // FIX: Removed 'data' argument since it wasn't used
+  const onSubmit = async () => {
     try {
       await new Promise((r) => setTimeout(r, 1000));
       toast.success('Account created! Please log in.');
@@ -45,25 +48,25 @@ export const RegisterForm = () => {
           <Input
             label='First Name'
             {...register('firstName')}
-            error={errors.firstName?.message as string}
+            error={errors.firstName?.message}
           />
           <Input
             label='Last Name'
             {...register('lastName')}
-            error={errors.lastName?.message as string}
+            error={errors.lastName?.message}
           />
         </div>
         <Input
           label='Email'
           type='email'
           {...register('email')}
-          error={errors.email?.message as string}
+          error={errors.email?.message}
         />
         <Input
           label='Password'
           type='password'
           {...register('password')}
-          error={errors.password?.message as string}
+          error={errors.password?.message}
         />
 
         <Button

@@ -14,6 +14,8 @@ const schema = z.object({
   password: z.string().min(1, 'Password is required'),
 });
 
+type LoginSchema = z.infer<typeof schema>;
+
 export const LoginForm = () => {
   const navigate = useNavigate();
   const setAuth = useAuthStore((state) => state.setAuth);
@@ -23,11 +25,11 @@ export const LoginForm = () => {
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<LoginSchema>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: LoginSchema) => {
     try {
       // MOCK API - Replace with actual API call
       await new Promise((r) => setTimeout(r, 1000));
@@ -60,7 +62,7 @@ export const LoginForm = () => {
           type='email'
           placeholder='name@company.com'
           {...register('email')}
-          error={errors.email?.message as string}
+          error={errors.email?.message}
         />
 
         <div className='space-y-1'>
@@ -68,16 +70,19 @@ export const LoginForm = () => {
             <label className='text-sm font-medium text-slate-700'>
               Password
             </label>
+            {/* FIX: Changed class -> className */}
             <Link
               to='/auth/forgot-password'
-              class='text-xs font-medium text-blue-600 hover:text-blue-500'>
+              className='text-xs font-medium text-blue-600 hover:text-blue-500'>
               Forgot password?
             </Link>
           </div>
+          {/* FIX: Added label prop (empty string if you handle label manually above) */}
           <Input
+            label=''
             type='password'
             {...register('password')}
-            error={errors.password?.message as string}
+            error={errors.password?.message}
           />
         </div>
 
