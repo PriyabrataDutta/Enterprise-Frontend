@@ -78,8 +78,9 @@ export const LoginForm = () => {
           </div>
           {/* FIX: Added label prop */}
           <Input
-            label=''
+            label='Password'
             type='password'
+            placeholder='**********'
             {...register('password')}
             error={errors.password?.message}
           />
