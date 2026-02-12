@@ -1,17 +1,17 @@
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '@/stores/useAuthStore';
-import { handleFormError } from '@/utils/errorHandler';
+import { Link } from 'react-router-dom';
 import { AuthLayout } from './AuthLayout';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useAuthStore } from '@/stores/useAuthStore';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 const schema = z.object({
-  email: z.string().email('Please enter a valid email'),
-  password: z.string().min(1, 'Password is required'),
+  email: z.string().email(),
+  password: z.string().min(1),
 });
 
 type LoginSchema = z.infer<typeof schema>;
@@ -23,64 +23,55 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors, isSubmitting },
   } = useForm<LoginSchema>({
     resolver: zodResolver(schema),
   });
 
   const onSubmit = async (data: LoginSchema) => {
-    try {
-      await new Promise((r) => setTimeout(r, 1000));
-      const mockRes = {
-        accessToken: 'jwt',
-        user: {
-          id: '1',
-          email: data.email,
-          firstName: 'Admin',
-          lastName: 'User',
-          role: 'ADMIN' as const,
-        },
-      };
+    // MOCK LOGIN FOR DOCTOR
+    await new Promise((r) => setTimeout(r, 1000));
 
-      setAuth(mockRes.accessToken, mockRes.user);
-      toast.success('Welcome back!');
-      navigate('/dashboard');
-    } catch (err) {
-      handleFormError(err, setError);
-    }
+    // Simulate getting a token
+    const mockUser = {
+      id: 'doc_123',
+      email: data.email,
+      firstName: 'Dr. Sarah',
+      lastName: 'Johnson',
+      role: 'ADMIN' as const,
+    };
+
+    setAuth('fake-jwt-token', mockUser);
+    toast.success('Welcome back, Doctor!');
+    navigate('/dashboard');
   };
 
   return (
-    <AuthLayout
-      title='Welcome back'
-      subtitle='Enter your credentials to access your account'>
+    <AuthLayout title='Provider Login' subtitle='Access your clinic dashboard'>
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
         <Input
-          label='Email'
+          label='Work Email'
+          placeholder='doctor@clinic.com'
           type='email'
-          placeholder='name@company.com'
           {...register('email')}
           error={errors.email?.message}
         />
 
         <div className='space-y-1'>
           <div className='flex items-center justify-between'>
-            <label className='text-sm font-medium text-slate-700'>
+            <label className='text-sm font-medium text-slate-700 dark:text-slate-300'>
               Password
             </label>
-            {/* FIX: Changed class -> className */}
             <Link
               to='/auth/forgot-password'
               className='text-xs font-medium text-blue-600 hover:text-blue-500'>
               Forgot password?
             </Link>
           </div>
-          {/* FIX: Added label prop */}
           <Input
-            label='Password'
+            label=''
             type='password'
-            placeholder='**********'
+            placeholder='••••••••'
             {...register('password')}
             error={errors.password?.message}
           />
@@ -90,17 +81,27 @@ export const LoginForm = () => {
           type='submit'
           isLoading={isSubmitting}
           className='w-full h-11 text-base'>
-          Sign In
+          Login to Dashboard
         </Button>
 
-        <p className='text-center text-sm text-slate-600'>
-          Don't have an account?{' '}
-          <Link
-            to='/auth/register'
-            className='font-semibold text-blue-600 hover:text-blue-500'>
-            Sign up
-          </Link>
-        </p>
+        <div className='relative'>
+          <div className='absolute inset-0 flex items-center'>
+            <div className='w-full border-t border-slate-200 dark:border-slate-700'></div>
+          </div>
+          <div className='relative flex justify-center text-sm'>
+            <span className='px-2 bg-white dark:bg-slate-900 text-slate-500'>
+              Are you a patient?
+            </span>
+          </div>
+        </div>
+
+        <Button
+          variant='outline'
+          type='button'
+          onClick={() => navigate('/')}
+          className='w-full'>
+          Go to Booking Page
+        </Button>
       </form>
     </AuthLayout>
   );
